@@ -6,24 +6,21 @@ pipeline {
     }
 
     stages {
-
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
 
-        stage('Java Tests') {
+        stage('Build & Test') {
             steps {
-                dir('java') {
-                    sh 'mvn clean test'
-                }
+                sh 'mvn clean test'
             }
-            post {
-                always {
-                    junit allowEmptyResults: true,
-                          testResults: 'java/target/surefire-reports/*.xml'
-                }
+        }
+
+        stage('Test Reports') {
+            steps {
+                junit '**/target/surefire-reports/*.xml'
             }
         }
     }
