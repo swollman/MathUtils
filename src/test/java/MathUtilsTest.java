@@ -1,9 +1,7 @@
-import org.junit.After;
 import org.junit.Before;
+import org.junit.After;
 import org.junit.Test;
-
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class MathUtilsTest {
 
@@ -11,17 +9,15 @@ public class MathUtilsTest {
 
     @Before
     public void setUp() {
-        // Runs before each test
         mathUtils = new MathUtils();
     }
 
     @After
     public void tearDown() {
-        // Runs after each test
         mathUtils = null;
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void testAdd() {
         assertEquals(5, mathUtils.add(2, 3));
         assertEquals(0, mathUtils.add(-2, 2));
@@ -49,7 +45,7 @@ public class MathUtilsTest {
     public void testDivide() {
         assertEquals(2.0, mathUtils.divide(6, 3), 0.001);
         assertEquals(-2.5, mathUtils.divide(-5, 2), 0.001);
-        assertEquals(-1.0, mathUtils.divide(10, 0), 0.001);  // division by zero case
+        assertEquals(-1.0, mathUtils.divide(10, 0), 0.001);
         assertEquals(0.5, mathUtils.divide(1, 2), 0.001);
     }
 }
