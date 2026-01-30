@@ -61,4 +61,19 @@ pipeline {
             }
         }
     }
+
+    post {
+        success {
+            slackSend(
+                webhookUrl: credentials('slack-webhook'),
+                message: "✔ SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}\n${env.BUILD_URL}"
+            )
+        }
+        failure {
+            slackSend(
+                webhookUrl: credentials('slack-webhook'),
+                message: "❌ FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}\n${env.BUILD_URL}"
+            )
+        }
+    }
 }
